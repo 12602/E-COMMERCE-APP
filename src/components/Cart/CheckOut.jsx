@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import StripeCheckout from "react-stripe-checkout";
-import { orderProducts } from "../redux/Features/productSlice";
+import { orderProducts } from "../../redux/Features/productSlice";
 export const Checkout = ({ subTotal }) => {
   const tokenHandler = (resp) => {
     const { card } = resp;

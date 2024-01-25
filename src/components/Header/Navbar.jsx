@@ -1,25 +1,34 @@
 import React from "react";
-import { Dropdown } from "react-bootstrap";
+//react-bootstrap
+import { Button, Dropdown } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+
+//redux start
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { logoutUser } from "../redux/Features/authSlice";
+//redux 
+import { logoutUser } from "../../redux/Features/authSlice";
 import {
   getOrderProducts,
   logoutHandler,
-} from "../redux/Features/productSlice";
+} from "../../redux/Features/productSlice";
+
+
+
+
+
 const NavBar = () => {
   const navigate = useNavigate();
-  const { cart, orderItems } = useSelector((state) => state.products);
+ // const { cart, orderItems } = useSelector((state) => state.products);
   const { user } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const logout = () => {
     dispatch(logoutHandler());
     dispatch(logoutUser());
-    navigate("/auth");
+    navigate("/login");
     toast.success("LogOut Succesfully!!!!");
   };
   const getOrderItems = () => {
@@ -37,11 +46,14 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Link className="link" to="/">
+            <Link className="link h3 p-2 ml-3" to="/">
               Home
             </Link>
-            <Link className="link" to="/categories">
-              Products
+            <Link className="link h3 p-2 ml-3" to="/categories">
+              Product (Categories)
+            </Link>
+            <Link className="link h3 p-2 ml-3 " to="/search">
+              Search Product
             </Link>
           </Nav>
 
@@ -69,7 +81,7 @@ const NavBar = () => {
                 </Dropdown>
               </>
             ) : (
-              <span onClick={() => navigate("/auth")}> Login</span>
+              <Button onClick={() => navigate("/login")}> Login</Button>
             )}
           </Nav>
         </Navbar.Collapse>

@@ -3,7 +3,8 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { detailProduct } from "../redux/Features/productSlice";
+import { detailProduct } from "../../redux/Features/productSlice";
+import { Col } from "react-bootstrap";
 const GetProduct = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const GetProduct = () => {
       <Card style={{ backgroundColor: "black", color: "white" }}>
         <Card.Img
           variant="top"
-          style={{ height: "30rem" }}
+          // style={{ height: "20rem" }}
           src={product?.image}
           fluid
         />
@@ -34,15 +35,21 @@ const GetProduct = () => {
           <Card.Text>{product?.description?.slice(0, 150)}</Card.Text>
           <Card.Text>
             {product?.description?.length > 200 && (
-              <Button variant="success" onClick={readMore}>
+                  <>{product?.description}</> 
+            )}
+            </Card.Text>
+            <Card.Text><span className="text-danger h5 p-2">Price:</span><span className="text-success h4 ">Rs:{product?.price}</span></Card.Text>
+             <Col md={12} className="text-center">
+                    
+           
+            <Button variant="success" onClick={readMore}>
                 Go Back To Home
               </Button>
-            )}
-
             <Button onClick={addToCart} variant="primary" className="ms-3">
               Add To Cart
             </Button>
-          </Card.Text>
+            </Col>    
+          
         </Card.Body>
       </Card>
     </div>

@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { addToCart } from "../redux/Features/productSlice";
+import { addToCart } from "../../redux/Features/productSlice";
 import { motion } from "framer-motion";
 import { toast } from "react-toastify";
 export const ProductCart = ({ item, delay }) => {
@@ -44,17 +44,18 @@ console.log(item);
           delay,
         }}
       >
-        <Card style={{ backgroundColor: "#88B048", color: "white",height:600 }}>
+        <Card className="p-3" style={{ backgroundColor: "#88B048", color: "white",height:500 }}>
           <Card.Img variant="top" style={{ height: "13rem" }} src={image} />
           <Card.Body>
             <Card.Title>{title}</Card.Title>
-            <Card.Text>{description.slice(0, 150)}</Card.Text>
+    
             <Card.Text>
-              {description.length > 200 && (
+             
                 <Button variant="success" onClick={readMore}>
                   Read More
                 </Button>
-              )}
+              
+              </Card.Text>
                   <Card.Text><span className="text-danger h5 p-2">Price:</span><span className="text-success h4 ">Rs:{price}</span></Card.Text>
 
                 {
@@ -64,7 +65,7 @@ console.log(item);
                 }
               
               
-            </Card.Text>
+            
           </Card.Body>
         </Card>
       </motion.div>

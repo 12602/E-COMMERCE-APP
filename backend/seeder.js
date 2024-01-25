@@ -55,3 +55,4 @@ const dataDestory = async () => {
 // } else {
 //   importData();
 // }
+module.exports = importData;

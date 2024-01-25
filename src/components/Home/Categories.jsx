@@ -1,18 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories } from "../redux/Features/productSlice";
-import { ProductCart } from "./ProductCard";
+import { getAllCategories } from "../../redux/Features/productSlice";
+import { ProductCart } from "../Product/ProductCard";
 
 const Categories = () => {
   const dispatch = useDispatch();
   const { products } = useSelector((state) => state.products);
   const [categories, setCategories] = useState([]);
   const [categoryProduct, setCategoryProduct] = useState([]);
-  const findAllCat = () => {
+  const findAllCat = () => 
+  {
     let cat = [];
     cat.push("all");
-    products.map((product) => {
+    products?.map((product) => {
       cat.push(product.category);
     });
 

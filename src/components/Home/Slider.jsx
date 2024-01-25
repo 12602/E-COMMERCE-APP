@@ -3,7 +3,9 @@ import { Col } from "react-bootstrap";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { ProductCart } from "./ProductCard";
+import { ProductCart } from "../Product/ProductCard";
+
+
 const responsive = {
   superLargeDesktop: {
     // the naming can be any, depends on you.
@@ -23,6 +25,11 @@ const responsive = {
     items: 1,
   },
 };
+
+
+
+
+
 
 const Slider = ({ products }) => {
   return (

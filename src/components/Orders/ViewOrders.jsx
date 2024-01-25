@@ -1,7 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { ProductCart } from "./ProductCard";
+import { ProductCart } from "../ProductCard";
 
 const ViewOrders = () => {
   const { orderItems } = useSelector((state) => state.products);

@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import { current } from '@reduxjs/toolkit'
 const URL = "http://localhost:5000/api/products";
 
-export const getAllProducts = createAsyncThunk("prodcuts/getAllProdcuts", async () => {
+//get all the products
+export const getAllProducts = createAsyncThunk("products/getAllProducts", async () => {
     try {
         const { data } = await axios.get(`http://localhost:5000/api/products`);
         console.log(data)
@@ -17,12 +18,16 @@ export const getAllProducts = createAsyncThunk("prodcuts/getAllProdcuts", async 
 
 });
 
-export const detailProduct = createAsyncThunk("prosucts/getOneProduct", async ({ id }) => {
+
+//get detail of specific product
+export const detailProduct = createAsyncThunk("products/getOneProduct", async ({ id }) => {
     const { data } = await axios.get(`${URL}/${id}`);
     console.log(data)
     return data;
-})
-export const getOrderProducts = createAsyncThunk("product/getOrderProduct", async ({ user }) => {
+});
+
+//get all ordered products
+export const getOrderProducts = createAsyncThunk("products/getOrderProduct", async ({ user }) => {
 
     const { data } = await axios.get(`http://localhost:5000/api/orders/myorders`, {
         headers: {
@@ -33,10 +38,12 @@ export const getOrderProducts = createAsyncThunk("product/getOrderProduct", asyn
     console.log(data);
 
     return data;
-})
-export const orderProducts = createAsyncThunk("prodcuts/orderProducts", async ({ formValue, cart, navigate, toast, token, totalPrice }) => {
+});
 
-    let re = { formValue, cart };
+//ordered new procuts
+export const orderProducts = createAsyncThunk("products/orderProducts", async ({ formValue, cart, navigate, toast, token, totalPrice }) => {
+
+    //let re = { formValue, cart };
     let shippingAddress = { ...formValue };
     let orderItems = cart;
 
@@ -64,6 +71,9 @@ export const orderProducts = createAsyncThunk("prodcuts/orderProducts", async ({
 
 });
 
+
+////////////////////////////////////////////////////////////////////////////////////////
+//creating reducer
 const productSlice = createSlice({
     name: 'product',
     initialState: {
@@ -75,18 +85,24 @@ const productSlice = createSlice({
         cart: [],
         orderItems: [],
     },
-    reducers: {
-        addToCart: (state, action) => {
+
+
+    reducers: 
+    {
+        addToCart: (state, action) => 
+        {
             state.cart.push(action.payload);
         },
-        logoutHandler: (state) => {
+        logoutHandler: (state) => 
+        {
             state.cart = [];
 
         },
 
 
     },
-    extraReducers: {
+    extraReducers: 
+     {
 
         [getAllProducts.pending]: (state, action) => {
             state.loading = true;
@@ -129,9 +145,7 @@ const productSlice = createSlice({
         [orderProducts.rejected]: (state, action) => {
             state.loading = false;
             state.error = action.payload
-
-
-        },
+         },
         [getOrderProducts.pending]: (state, action) => {
             state.loading = true;
         },
@@ -154,5 +168,9 @@ const productSlice = createSlice({
 
     }
 })
+
+
+/////////////////////////////////////////////////////////////////////////////////////////
+
 export const { addToCart, logoutHandler, getAllCategories } = productSlice.actions
 export default productSlice.reducer;
